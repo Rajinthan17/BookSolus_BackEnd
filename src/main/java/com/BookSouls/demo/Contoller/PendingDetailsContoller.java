@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.BookSouls.Entity.PendingDetails;
 import com.BookSouls.demo.Service.PendingDetailsService;
 
+@CrossOrigin ("*")
 @RestController
 @RequestMapping(value = "/pending")
 public class PendingDetailsContoller {
@@ -35,7 +37,7 @@ public class PendingDetailsContoller {
 	@GetMapping (value = "/page")
 	public ResponseEntity <Map<String, Object>> getAllPendings(
 			@RequestParam(name = "pageNo",defaultValue = "0") int pageNo,
-			@RequestParam(name = "pageSize",defaultValue = "10") int pageSize){
+			@RequestParam(name = "pageSize",defaultValue = "5") int pageSize){
 		return pendingService.getAllPendings(pageNo,pageSize);
 	}
 	
@@ -43,7 +45,7 @@ public class PendingDetailsContoller {
 	public ResponseEntity<Map<String,Object>> getSerchedPendings(
 			@RequestParam(name = "serched",defaultValue = "null") String searched,
 			@RequestParam(name = "pageNo",defaultValue = "1") int pageNo,
-			@RequestParam(name = "pageSize",defaultValue = "15") int pageSize
+			@RequestParam(name = "pageSize",defaultValue = "5") int pageSize
 			){
 		return pendingService.searchedBooks(searched,pageNo,pageSize);
 	}

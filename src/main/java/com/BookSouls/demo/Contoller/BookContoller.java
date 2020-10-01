@@ -60,7 +60,7 @@ public class BookContoller {
 	public ResponseEntity<Map<String,Object>> getSerchedBook(
 			@RequestParam(name = "serched",defaultValue = "null") String searched,
 			@RequestParam(name = "pageNo",defaultValue = "0") int pageNo,
-			@RequestParam(name = "pageSize",defaultValue = "15") int pageSize
+			@RequestParam(name = "pageSize",defaultValue = "5") int pageSize
 			){
 		return bookService.searchedBooks(searched,pageNo,pageSize);
 	}
@@ -82,7 +82,7 @@ public class BookContoller {
 			@RequestParam(name = "minPrice",defaultValue = "0") int minPrice,
 			@RequestParam(name = "maxPrice",defaultValue = "10000") int maxPrice,
 			@RequestParam(name = "pageNo",defaultValue = "0") int pageNo,
-			@RequestParam(name = "pageSize",defaultValue = "15") int pageSize
+			@RequestParam(name = "pageSize",defaultValue = "5") int pageSize
 			){
 		return bookService.getFilteredBook(usage,category,minPrice,maxPrice,pageNo,pageSize);
 	}

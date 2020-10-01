@@ -56,8 +56,8 @@ public class BookService {
             Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
             Page<Books> page = bookRepo.findAll(pageable);
             response.put("data", page.getContent());
-            response.put("Total no of pages", page.getTotalPages());
-            response.put("Total no of elements", page.getTotalElements());
+            response.put("Total_No_Of_Pages", page.getTotalPages());
+            response.put("Total_No_Of_Elements", page.getTotalElements());
             response.put("Current page no", page.getNumber());
             
             return new ResponseEntity<>(response, HttpStatus.OK);
@@ -110,6 +110,8 @@ public class BookService {
 		page.setPage(pageNo); 
 		
 		response.put("data", page.getPageList());
+		response.put("Total_No_Of_Elements", page.getNrOfElements());
+		response.put("Total_No_Of_Pages", page.getPage());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
@@ -122,6 +124,8 @@ public class BookService {
 		page.setPageSize(pageSize); // number of items per page
 		page.setPage(pageNo); 
 		response.put("data", page.getPageList());
+		response.put("Total_No_Of_Pages", page.getPage());
+		response.put("Total_No_Of_Elements", page.getNrOfElements());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 

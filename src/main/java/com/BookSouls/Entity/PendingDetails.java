@@ -5,14 +5,14 @@ public class PendingDetails {
 	
 	
 	private int id;
-	private String bookName;
+	private Books book;
 	private String buyerName;
 	private String buyerAddress;
 	private String buyerPhoneNum;
 	
-	public PendingDetails(int id, String bookName, String buyerName, String buyerAddress, String buyerPhoneNum ) {
+	public PendingDetails(int id,Books book, String buyerName, String buyerAddress, String buyerPhoneNum ) {
 		this.id = id;
-		this.bookName = bookName;
+		this.book = book;
 		this.buyerName = buyerName;
 		this.buyerAddress = buyerAddress;
 		this.buyerPhoneNum = buyerPhoneNum;
@@ -26,13 +26,6 @@ public class PendingDetails {
 		this.id = id;
 	}
 
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
 
 	public String getBuyerName() {
 		return buyerName;
@@ -58,12 +51,19 @@ public class PendingDetails {
 		this.buyerPhoneNum = buyerPhoneNum;
 	}
 
+	public Books getBook() {
+		return book;
+	}
+
+	public void setBook(Books book) {
+		this.book = book;
+	}
+
 	@Override
 	public String toString() {
-		return "PendingDetails [id=" + id + ", bookName=" + bookName + ", buyerName=" + buyerName + ", buyerAddress="
+		return "PendingDetails [id=" + id + ", book=" + book + ", buyerName=" + buyerName + ", buyerAddress="
 				+ buyerAddress + ", buyerPhoneNum=" + buyerPhoneNum + "]";
 	}
 
-	
 	
 }

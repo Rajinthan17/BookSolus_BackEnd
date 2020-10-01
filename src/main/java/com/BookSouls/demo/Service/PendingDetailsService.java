@@ -32,7 +32,7 @@ public class PendingDetailsService {
 	public ResponseEntity<PendingDetails> createPending(PendingDetails pendingDetails) {
 		try {
 			int id = pendingRepoCustom.getMaxPendingDetailID()+1;
-			PendingDetails newPending = pendingRepo.save(new PendingDetails(id,pendingDetails.getBookName(),pendingDetails.getBuyerName(),pendingDetails.getBuyerAddress(),pendingDetails.getBuyerPhoneNum()));
+			PendingDetails newPending = pendingRepo.save(new PendingDetails(id,pendingDetails.getBook(),pendingDetails.getBuyerName(),pendingDetails.getBuyerAddress(),pendingDetails.getBuyerPhoneNum()));
 			
 			return new ResponseEntity<>(newPending,HttpStatus.CREATED);
 		}catch(Exception e) {
@@ -60,8 +60,8 @@ public class PendingDetailsService {
             Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
             Page<PendingDetails> page = pendingRepo.findAll(pageable);
             response.put("data", page.getContent());
-            response.put("Total no of pages", page.getTotalPages());
-            response.put("Total no of elements", page.getTotalElements());
+            response.put("Total_No_Of_Pages", page.getTotalPages());
+            response.put("Total_No_Of_Elements", page.getTotalElements());
             response.put("Current page no", page.getNumber());
             
             return new ResponseEntity<>(response, HttpStatus.OK);
@@ -79,6 +79,7 @@ public class PendingDetailsService {
 		page.setPage(pageNo); 
 		
 		response.put("data", page.getPageList());
+		response.put("Total_No_Of_Elements", page.getNrOfElements());
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
