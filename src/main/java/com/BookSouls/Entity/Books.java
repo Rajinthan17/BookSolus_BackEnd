@@ -1,9 +1,13 @@
 package com.BookSouls.Entity;
 
+
+
+
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.multipart.MultipartFile;
 
 @Document(collection = "Books")
 public class Books {
@@ -16,10 +20,10 @@ public class Books {
 	int isbNumber;
 	int price;
 	String usage;
-	List<Photo> image;
+	List<String> image;
 	long sellerId; //user id
 	
-	public Books (long id, String name, String authorName, String description,String category, int isbNumber, int price, String usage, List<Photo> image, long sellerId) {
+	public Books (long id, String name, String authorName, String description,String category, int isbNumber, int price, String usage, List<String> image, long sellerId) {
 		this.id = id;
 		this.name = name;
 		this.authorName = authorName;
@@ -96,11 +100,11 @@ public class Books {
 		this.usage = usage;
 	}
 
-	public List<Photo> getImage() {
+	public List<String> getImage() {
 		return image;
 	}
 
-	public void setImage(List<Photo> image) {
+	public void setImage(List<String> image) {
 		this.image = image;
 	}
 
