@@ -225,6 +225,27 @@ public class UserService {
         	return new ResponseEntity<>(null,HttpStatus.SERVICE_UNAVAILABLE);
         }
 	}
+
+	public ResponseEntity<User> forgotPasswordUpdate(String username, String newPassword) {
+		Optional<User> user = userRepository.findByUsername(username);
+		User _user = new User();
+    	if(user.isPresent()) {
+    		_user = user.get();
+    	}
+    	if(userRepository.existsByEmail(username)) {
+    		user = userRepository.findByEmail(username);
+    		if(user.isPresent()) {
+        		_user = user.get();
+        	}
+    	}
+    	if(_user != null) {
+    		_user.setPassword(encoder.encode(newPassword));
+    		userRepository.save(_user);
+    		return new ResponseEntity<>(_user,HttpStatus.OK);
+    	}else {
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    	}
+	}
 	
 	
 }

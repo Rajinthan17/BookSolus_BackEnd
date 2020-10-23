@@ -120,6 +120,13 @@ public class UserContoller {
 		return userService.updatePassword(id,oldPassword,newPassword);
 	}
 	
+	@PutMapping(value = "forgot/password")
+	public ResponseEntity<User>updatePassword(
+			@RequestParam(name = "username") String username,
+			@RequestParam(name = "newPassword") String newPassword){
+		return userService.forgotPasswordUpdate(username,newPassword);
+	}
+	
 	@GetMapping
 	public ResponseEntity<Map<String, Object>> getAllUsers(
 			@RequestParam(name = "pageNo",defaultValue = "0") int pageNo,

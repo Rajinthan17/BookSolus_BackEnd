@@ -59,6 +59,9 @@ public class User {
 		this.image = image;
 	}
 
+	public User() {
+	}
+
 	public String getId() {
 		return id;
 	}

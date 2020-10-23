@@ -20,8 +20,12 @@ public interface UserRepository extends MongoRepository<User, String> {
 
   Boolean existsByEmail(String email);
   
+  
   List<User> findByRolesName(String name);
   
   @Query("{$or: [ { 'username': { $regex: ?0 , $options: 'i' } }, { 'email':{ $regex: ?0, $options: 'i' } },{ 'phoneNum': { $regex: ?0 , $options: 'i' } },{ 'address': { $regex: ?0 , $options: 'i' } } ]}")
   List<User> findBySearchContaining(String searched);
+  
+  @Query("{ 'email' : ?0 }")
+  Optional<User>findByEmail(String email);
 }
