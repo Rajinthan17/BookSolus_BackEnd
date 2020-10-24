@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -77,20 +78,20 @@ public class UserContoller {
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
-			Role userRole = roleRepository.findByName(ERole.Role_USER)
+			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
 				case "admin":
-					Role adminRole = roleRepository.findByName(ERole.Role_ADMIN)
+					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found.."));
 					roles.add(adminRole);
 
 					break;
 				default:
-					Role userRole = roleRepository.findByName(ERole.Role_USER)
+					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found..."));
 					roles.add(userRole);
 				}
@@ -108,15 +109,17 @@ public class UserContoller {
 		return userService.updateUser(id,user);
 	}
 	@PutMapping(value = "user/{id}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<MessageResponse> updateUserByUser (@PathVariable String id, @RequestBody SignupRequest user ){
 		return userService.updateUserByUser(id,user);
 	}
 	
 	@PutMapping(value = "password/{id}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<User>updatePassword(
 			@PathVariable String id,
-			@RequestParam(name = "oldPassword",defaultValue = "null") String oldPassword,
-			@RequestParam(name = "newPassword",defaultValue = "0") String newPassword){
+			@RequestParam(name = "oldPassword") String oldPassword,
+			@RequestParam(name = "newPassword") String newPassword){
 		return userService.updatePassword(id,oldPassword,newPassword);
 	}
 	
@@ -143,6 +146,7 @@ public class UserContoller {
 	}
 	
 	@GetMapping(value = "/{id}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<User> getUserById (@PathVariable String id){
 		return userService.getUserById(id);
 	}

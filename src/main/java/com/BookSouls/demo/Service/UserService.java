@@ -58,26 +58,26 @@ public class UserService {
 				Set<String> strRoles = user.getUpdateroles();
 				Set<Role> roles = new HashSet<>();
 				if (strRoles == null) {
-					Role userRole = roleRepository.findByName(ERole.Role_USER)
+					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(userRole);
 				} else {
 					strRoles.forEach(role -> {
 						switch (role) {
 						case "admin":
-						Role adminRole = roleRepository.findByName(ERole.Role_ADMIN)
+						Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 						roles.add(adminRole);
 	
 						break;
 						case "user":
-						Role userRole = roleRepository.findByName(ERole.Role_USER)
+						Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 						roles.add(userRole);
 	
 						break;
 						default:
-						Role userRoles = roleRepository.findByName(ERole.Role_USER)
+						Role userRoles = roleRepository.findByName(ERole.ROLE_USER)
 						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 						roles.add(userRoles);
 						}
