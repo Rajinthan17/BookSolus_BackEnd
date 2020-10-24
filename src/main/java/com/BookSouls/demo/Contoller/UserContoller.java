@@ -54,6 +54,7 @@ public class UserContoller {
 	BasicAuthUtils basicUtils;
 	
 	@PostMapping
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> createUser(@Valid @RequestBody SignupRequest signUpRequest){
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest()
@@ -105,6 +106,7 @@ public class UserContoller {
 	}
 	
 	@PutMapping(value = "/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<MessageResponse> updateUser (@PathVariable String id, @RequestBody SignupRequest user ){
 		return userService.updateUser(id,user);
 	}
@@ -131,6 +133,7 @@ public class UserContoller {
 	}
 	
 	@GetMapping
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Map<String, Object>> getAllUsers(
 			@RequestParam(name = "pageNo",defaultValue = "0") int pageNo,
 			@RequestParam(name = "pageSize",defaultValue = "5") int pageSize){
@@ -138,6 +141,7 @@ public class UserContoller {
 	}
 	
 	@GetMapping(value = "/Searchedpage")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Map<String, Object>> getSearchUsers(
 			@RequestParam(name = "searched",defaultValue = "0") String searched,
 			@RequestParam(name = "pageNo",defaultValue = "0") int pageNo,
@@ -152,6 +156,7 @@ public class UserContoller {
 	}
 	
 	@DeleteMapping(value = "/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<User>deleteUserById(@PathVariable String id){
 		return userService.deleteUserById(id);
 	}
