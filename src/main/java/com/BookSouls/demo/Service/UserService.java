@@ -122,6 +122,7 @@ public class UserService {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
 			oldUser.setPassword(encoder.encode(newPassword));
+			oldUser.setPasswordChangeToken(basicUtils.generateBasicToken(oldUser.getUsername(),newPassword));
 			userRepository.save(oldUser);
 			return new ResponseEntity<>(oldUser,HttpStatus.OK);
 			//String basicToken = basicUtils.generateBasicToken(oldUser.getUsername(), oldPassword);

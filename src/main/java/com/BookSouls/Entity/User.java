@@ -36,15 +36,13 @@ public class User {
 	  
 	  private Set<String> updateroles;
 	  
-	  private String address;
+	  private String passwordChangeToken;
+	  
+	  
 
-	  public Set<String> getUpdateroles() {
-		return updateroles;
-	}
+	private String address;
 
-	public void setUpdateroles(Set<String> updateroles) {
-		this.updateroles = updateroles;
-	}
+	  
 
 	@DBRef
 	  private Set<Role> roles = new HashSet<>();
@@ -124,6 +122,22 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getPasswordChangeToken() {
+		return passwordChangeToken;
+	}
+
+	public void setPasswordChangeToken(String passwordChangeToken) {
+		this.passwordChangeToken = passwordChangeToken;
+	}
+
+	public Set<String> getUpdateroles() {
+		return updateroles;
+	}
+
+	public void setUpdateroles(Set<String> updateroles) {
+		this.updateroles = updateroles;
 	}
 	
 	
