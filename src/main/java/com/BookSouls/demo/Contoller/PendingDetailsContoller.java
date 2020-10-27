@@ -27,7 +27,6 @@ public class PendingDetailsContoller {
 	PendingDetailsService pendingService;
 	
 	@PostMapping
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<PendingDetails> createPending (@RequestBody PendingDetails pendingDetails){
 		return pendingService.createPending(pendingDetails);
 	}

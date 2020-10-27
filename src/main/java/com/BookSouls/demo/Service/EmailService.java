@@ -54,7 +54,7 @@ public class EmailService {
 	    	MimeMessage msg = javaMailSender.createMimeMessage();
 	        MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 	        helper.setTo(toEmail);
-	        helper.setSubject("Testing from Spring Boot");
+	        helper.setSubject("Forgot Password OTP");
 	        helper.setText("We heard that you lost your BookSouls Account password.Sorry about that! <br/> "
 	        		+ "But don't worry! You can use the following code to rest it <strong>"+ otp +"</strong> <br/>Thanks,<br/>The BookSouls Team", true);
 	
