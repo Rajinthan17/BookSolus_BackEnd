@@ -87,6 +87,7 @@ public class UserService {
 					newUser.setAddress(user.getAddress());
 					newUser.setPhoneNum(user.getPhoneNum());
 					newUser.setRoles(roles);
+					newUser.setImage(user.getImage());
 					userRepository.save(newUser);
 					return ResponseEntity.ok(new MessageResponse("User Update Sucessfully!"));
 					
@@ -98,7 +99,7 @@ public class UserService {
 				newUser.setEmail(user.getEmail());
 				newUser.setAddress(user.getAddress());
 				newUser.setPhoneNum(user.getPhoneNum());
-				
+				newUser.setImage(user.getImage());
 				
 				newUser.setRoles(roles);
 				userRepository.save(newUser);
@@ -173,6 +174,7 @@ public class UserService {
 					newUser.setEmail(user.getEmail());
 					newUser.setAddress(user.getAddress());
 					newUser.setPhoneNum(user.getPhoneNum());
+					newUser.setImage(user.getImage());
 					userRepository.save(newUser);
 					return ResponseEntity.ok(new MessageResponse("User Update Sucessfully!"));
 					
@@ -184,6 +186,7 @@ public class UserService {
 				newUser.setEmail(user.getEmail());
 				newUser.setAddress(user.getAddress());
 				newUser.setPhoneNum(user.getPhoneNum());
+				newUser.setImage(user.getImage());
 				userRepository.save(newUser);
 				return ResponseEntity.ok(new MessageResponse("User Update Sucessfully!"));
 			}
