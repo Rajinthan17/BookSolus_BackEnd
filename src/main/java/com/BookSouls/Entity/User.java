@@ -112,20 +112,20 @@ public class User {
 		return roles;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 
 	public String getPasswordChangeToken() {
 		return passwordChangeToken;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public void setPasswordChangeToken(String passwordChangeToken) {

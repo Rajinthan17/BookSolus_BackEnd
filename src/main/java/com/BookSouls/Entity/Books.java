@@ -20,9 +20,9 @@ public class Books {
 	int price;
 	String usage;
 	List<String> image;
-	long sellerId; //user id
+	String sellerId; //user id
 	
-	public Books (long id, String name, String authorName, String description,String category, int isbNumber, int price, String usage, List<String> image, long sellerId) {
+	public Books (long id, String name, String authorName, String description,String category, int isbNumber, int price, String usage, List<String> image, String sellerId) {
 		this.id = id;
 		this.name = name;
 		this.authorName = authorName;
@@ -107,11 +107,11 @@ public class Books {
 		this.image = image;
 	}
 
-	public long getSellerId() {
+	public String getSellerId() {
 		return sellerId;
 	}
 
-	public void setSellerId(long sellerId) {
+	public void setSellerId(String sellerId) {
 		this.sellerId = sellerId;
 	}
 
